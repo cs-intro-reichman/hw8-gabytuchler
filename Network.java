@@ -62,6 +62,9 @@ public class Network {
     if (user1 == null || user2 == null) {
         return false;
     }
+    if (name1.equals(name2)) {
+        return false;
+    }
     return user1.addFollowee(name2);
     }
     
@@ -124,10 +127,12 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-      String result = "";
+    String result = "Network:";
+
     for (int i = 0; i < userCount; i++) {
-        result += users[i].toString() + "\n";
+        result += "\n" + users[i].toString();
     }
+
     return result;
-    }
+}
 }
