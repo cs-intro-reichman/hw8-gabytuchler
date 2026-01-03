@@ -71,20 +71,25 @@ public class Network {
     if (me == null) {
         return null;
     }
+
     int max = -1;
     String best = null;
+
     for (int i = 0; i < userCount; i++) {
         User maybe = users[i];
-        if (maybe.getName().equals(name)) {
-               if (me.follows(maybe.getName())) {  
-                     int same = me.countMutual(maybe);
-        if (same > max) {
-            max = same;
-            best = maybe.getName();
+        if (!maybe.getName().equals(name)) {
+            if (!me.follows(maybe.getName())) {
+                int same = me.countMutual(maybe);
+                if (same > max) {
+                    max = same;
+                    best = maybe.getName();
+                }
+            }
         }
     }
     return best;
-    }}}
+}
+
 
     /** Computes and returns the name of the most popular user in this network: 
      *  The user who appears the most in the follow lists of all the users. */
